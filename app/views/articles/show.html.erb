@@ -8,4 +8,8 @@
   <div>
     <%= @article.description %>
   </div>
+
+  <div>
+    <%= link_to "Edit article", article_edit_path(@article.id) %>
+  </div>
 </div>
