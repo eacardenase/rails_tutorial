@@ -10,6 +10,7 @@
   </div>
 
   <div>
-    <%= link_to "Edit article", article_edit_path(@article.id) %>
+    <%= link_to "Edit article", article_edit_path(@article) %>
+    <%= button_to "Delete article", article_destroy_path(@article), method: :delete%>
   </div>
 </div>
