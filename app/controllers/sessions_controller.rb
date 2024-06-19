@@ -3,6 +3,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    debugger
+    @user = User.find_by(email: params[:session][:email])
+
+    if @user.present? && @user.authenticate(params[:session][:password])
+      session[:user_id] = @user.id
+
+      redirect_to root_path, notice: "Log In successfull"
+    else
+      redirect_to login_path, notice: "Email or password incorrect"
+    end
   end
 end
