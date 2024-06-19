@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
 
     if @article.save
-      redirect_to articles_path
+      redirect_to articles_path, notice: "Article was created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,9 +26,12 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article.update(article_params)
+    if @article.update(article_params)
+      redirect_to article_path(params[:id]), notice: "Article was updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
 
-    redirect_to article_path(params[:id])
   end
 
   def destroy
