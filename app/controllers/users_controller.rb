@@ -1,8 +1,15 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i(new create)
 
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
+  end
+
+  def show
   end
 
   def create
@@ -15,6 +22,15 @@ class UsersController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   private
