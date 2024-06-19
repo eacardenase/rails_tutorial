@@ -13,4 +13,10 @@ class SessionsController < ApplicationController
       redirect_to login_path, notice: "Email or password incorrect"
     end
   end
+
+  def destroy
+    # session[:user_id] = nil
+    session.delete(:user_id)
+    redirect_to login_path, notice: "Logout successful"
+  end
 end
