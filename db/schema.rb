@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_20_203023) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_20_204102) do
   create_table "articles", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -18,6 +18,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_20_203023) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "name"
+    t.date "birth"
+    t.string "city"
+    t.string "country"
+    t.boolean "gender"
+    t.integer "role"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -28,4 +41,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_20_203023) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "profiles", "users"
 end
