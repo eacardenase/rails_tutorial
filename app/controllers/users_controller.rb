@@ -29,6 +29,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "User was updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

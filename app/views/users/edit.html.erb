@@ -1,7 +1,7 @@
 <h1>Edit User</h1>
 
 <div>
-  <%= form_with(model: @user, url: new_user_registration_path) do |form| %>
+  <%= form_with(model: @user) do |form| %>
     <% if @user.errors.any? %>
     <div class="error_explanation">
       <h2>
