@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get "/users", to: "users#index"
   get "/signup", to: "users#new", as: "signup"
-  post "/signup", to: "users#create", as: "new_user_registration"
+  post "/users", to: "users#create"
   get "/users/:id", to: "users#show", as: "user"
   get "/users/:id/edit", to: "users#edit", as: "user_edit"
   patch "/users/:id", to: "users#update"
