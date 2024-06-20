@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  skip_before_action :user_has_profile?, only: %i[ new create ]
   before_action :set_profile, only: %i[ show edit update destroy ]
 
   # GET /profiles or /profiles.json
@@ -21,8 +22,7 @@ class ProfilesController < ApplicationController
 
   # POST /profiles or /profiles.json
   def create
-    @profile = Profile.new(profile_params)
-    @profile.user.id = current_user.id
+    @profile = current_user.build_profile(profile_params) # build_ allowed only for 1 - 1 relationships
 
     respond_to do |format|
       if @profile.save

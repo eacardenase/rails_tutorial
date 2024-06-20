@@ -1,9 +1,9 @@
 class Profile < ApplicationRecord
-  validates :name, precense: true
-  validates :city, precense: true
-  validates :country, precense: true
-  validates :birth, precense: true
-  validates :gender, precense: true
+  validates :name, presence: true
+  validates :city, presence: true
+  validates :country, presence: true
+  validates :birth, presence: true
+  validates :gender, presence: true
 
   belongs_to :user
 end
