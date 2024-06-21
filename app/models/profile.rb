@@ -9,6 +9,8 @@ class Profile < ApplicationRecord
 
   belongs_to :user
 
+  enum role: [:member, :admin, :superadmin]
+
   private
 
   def validate_gender
