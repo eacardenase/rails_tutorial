@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, :user_has_profile?
+  before_action  :authenticate_user!, :user_has_profile?
   helper_method :current_user
 
   def current_user
