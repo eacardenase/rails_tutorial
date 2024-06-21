@@ -11,7 +11,14 @@ class Profile < ApplicationRecord
 
   enum role: [:member, :admin, :superadmin]
 
+  after_create :set_role
+
   private
+
+  def set_role
+    # self.update(role: 0)
+    self.member!
+  end
 
   def validate_gender
     errors.add(:gender, "was specified incorrectly") unless ["Male", "Female"].include?(self.gender)
