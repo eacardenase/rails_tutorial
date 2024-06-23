@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   patch "/users/:id", to: "users#update"
   delete "/users/:id", to: "users#destroy", as: "user_destroy"
 
+  get "/confirm_email/:token", to: "users#confirm_email"
+
   get "/login", to: "sessions#login", as: "login"
   post "/login", to: "sessions#create", as: "new_user_session"
   delete "/logout", to: "sessions#destroy"

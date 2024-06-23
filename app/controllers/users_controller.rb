@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[new create]
+  skip_before_action :authenticate_user!, only: %i[ new create confirm_email ]
   before_action :set_user, only: %i[show edit update destroy]
 
   def index
@@ -10,6 +10,13 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def confirm_email
+    user = User.find_by(token: params[:token])
+    user.update!(is_confirmed?: true)
+
+    redirect_to login_path, notice: "Your account has been confirmed. Welcome aboard!"
+  end
+
   def show
   end
 
@@ -18,10 +25,7 @@ class UsersController < ApplicationController
 
     if @user.save
       UserMailer.with(user: @user).confirm_account.deliver_later
-
-      session[:user_id] = @user.id
-
-      redirect_to root_path, notice: "Signed up successfully"
+      redirect_to login_path, notice: "A confirmation email was sent to your email account."
     else
       render :new, status: :unprocessable_entity
     end
