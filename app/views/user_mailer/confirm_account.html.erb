@@ -5,7 +5,17 @@
 </head>
 <body>
   <body>
-    <h1>Welcome to example.com, <%= @user %></h1>
+    <h1>Welcome to My Awesome Site</h1>
+    
+    <div>
+      <p>
+        Hello, <%= @user.email %>
+      </p>
+      <p>
+        You need to confirm your email account. <br>
+        Please, visit this link: <%= @url %>
+      </p>
+    </div>
     
     <p>Thanks for joining and have a great day!</p>
   </body>
