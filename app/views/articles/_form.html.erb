@@ -32,6 +32,11 @@
     </div>
 
     <div>
+      <%= form.label :body, "Insert the article's body: " %>
+      <%= form.rich_text_area :body %>
+    </div>
+
+    <div>
       <%= form.submit %>
     </div>
   <% end %>

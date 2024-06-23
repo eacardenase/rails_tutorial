@@ -10,7 +10,11 @@
   </div>
 
   <div>
-    <%= image_tag(@article.avatar, width: "750") %>
+    <%= image_tag(@article.avatar, width: "750") if @article.avatar.attached? %>
+  </div>
+
+  <div>
+    <%= @article.body %>
   </div>
 
   <div>
