@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments, only: %i[ edit create update destroy ]
   resources :categories
   resources :profiles
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
