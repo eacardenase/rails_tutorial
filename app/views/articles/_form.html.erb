@@ -37,6 +37,10 @@
     </div>
 
     <div>
+      <%= collection_check_boxes(:categories, :ids, Category.all, :id, :name) %>
+    </div>
+
+    <div>
       <%= form.submit %>
     </div>
   <% end %>
