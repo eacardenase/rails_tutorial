@@ -27,6 +27,8 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    @article.update_categories(categories_ids) unless categories_ids.empty?
+
     if @article.update(article_params)
       redirect_to article_path(params[:id]), notice: "Article was updated."
     else

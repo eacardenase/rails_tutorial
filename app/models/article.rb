@@ -17,4 +17,14 @@ class Article < ApplicationRecord
       self.categories << category
     end
   end
+
+  def update_categories(ids)
+    self.categories.delete_all unless self.categories.empty?
+
+    ids.each do |id|
+      category = Category.find(id)
+
+      self.categories << category
+    end
+  end
 end
