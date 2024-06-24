@@ -9,4 +9,12 @@ class Article < ApplicationRecord
 
   belongs_to :user
   has_and_belongs_to_many :categories
+
+  def add_categories(ids)
+    ids.each do |id|
+      category = Category.find(id)
+
+      self.categories << category
+    end
+  end
 end

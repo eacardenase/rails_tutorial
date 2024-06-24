@@ -14,6 +14,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
+    # Article.add_categories(@article, categories_ids)
+    @article.add_categories(categories_ids)
 
     if @article.save
       redirect_to articles_path, notice: "Article was created."
@@ -43,9 +45,11 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    debugger
-
     params.require(:article).permit(:name, :description, :avatar, :body)
+  end
+
+  def categories_ids
+    params[:categories][:ids].reject { |id| id.empty? }
   end
 
   def set_article
