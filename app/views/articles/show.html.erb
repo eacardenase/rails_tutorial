@@ -6,6 +6,14 @@
   </h3>
 
   <div>
+    <% @article.categories.each do |category| %>
+      <span>
+        <%= category.name %>
+      </span> <br>
+    <% end %>
+  </div>
+
+  <div>
     <%= @article.description %>
   </div>
 
