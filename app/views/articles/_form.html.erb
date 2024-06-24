@@ -37,7 +37,15 @@
     </div>
 
     <div>
-      <%= collection_check_boxes(:categories, :ids, Category.all, :id, :name) %>
+      <%= collection_check_boxes(:categories, :ids, Category.all, :id, :name) do |box| %>
+        <% if article.categories.include?(Category.find(box.object.id)) %>
+          <%= box.check_box checked: true %>
+        <% else %>
+          <%= box.check_box %>
+        <% end %>
+        
+        <%= box.object.name %>
+      <% end %>
     </div>
 
     <div>
