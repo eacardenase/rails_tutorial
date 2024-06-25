@@ -5,4 +5,8 @@
     <%= comment.user.email %>
   </p>
 
+  <div>
+    <%= button_to "Delete comment", comment_path(comment), method: :delete %>
+  </div>
+
 </div>
