@@ -1,44 +1,54 @@
-<%= form_with(model: profile) do |form| %>
-  <% if profile.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+<section class="flex flex-col m-20 px-10 border border-gray-200 items-center justify-center rounded-lg">
+  <h1 class="main-title"><%= title %></h1>
 
-      <ul>
-        <% profile.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="max-w-lg w-full mb-10">
+    <%= form_with(model: profile, class: "flex flex-col w-full") do |form| %>
+      <% if profile.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+          <ul>
+            <% profile.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div>
+        <%= form.label :name, style: "display: block", class: "label-form" %>
+        <%= form.text_field :name, class: "field-form" %>
+      </div>
+
+      <div>
+        <%= form.label :birth, style: "display: block", class: "label-form" %>
+        <%= form.date_field :birth, class: "field-form" %>
+      </div>
+
+      <div>
+        <%= form.label :city, style: "display: block", class: "label-form" %>
+        <%= form.text_field :city, class: "field-form" %>
+      </div>
+
+      <div>
+        <%= form.label :country, style: "display: block", class: "label-form" %>
+        <%= form.text_field :country, class: "field-form" %>
+      </div>
+
+      <div class="flex items-center gap-5">
+        <div class="my-auto">
+          <%= form.radio_button :gender, "Male" %>
+          <%= form.label :gender, "Male", class: "label-form" %>
+        </div>
+        <div class="my-auto">
+          <%= form.radio_button :gender, "Female" %>
+          <%= form.label :gender, "Female", class: "label-form" %>
+        </div>
+      </div>
+
+      <div class="mt-10 flex justify-center items-center">
+        <%= form.submit class: "btn-primary bg-green-700 cursor-pointer" %>
+      </div>
+    <% end %>
   </div>
-
-  <div>
-    <%= form.label :birth, style: "display: block" %>
-    <%= form.date_field :birth %>
-  </div>
-
-  <div>
-    <%= form.label :city, style: "display: block" %>
-    <%= form.text_field :city %>
-  </div>
-
-  <div>
-    <%= form.label :country, style: "display: block" %>
-    <%= form.text_field :country %>
-  </div>
-
-  <div>
-    <%= form.radio_button :gender, "Male" %>
-    <%= form.label :gender, "Male" %>
-    <%= form.radio_button :gender, "Female" %>
-    <%= form.label :gender, "Female" %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</section>
