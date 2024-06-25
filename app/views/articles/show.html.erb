@@ -27,7 +27,7 @@
 
   <div>
     <%= link_to "Edit article", article_edit_path(@article) %>
-    <%= button_to "Delete article", article_destroy_path(@article), method: :delete%>
+    <%= button_to "Delete article", article_destroy_path(@article), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
   </div>
 
   <hr>

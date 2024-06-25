@@ -6,7 +6,7 @@
   </p>
 
   <div>
-    <%= button_to "Delete comment", comment_path(comment), method: :delete %>
+    <%= button_to "Delete comment", comment_path(comment), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
   </div>
 
 </div>
