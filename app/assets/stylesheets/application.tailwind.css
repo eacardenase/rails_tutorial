@@ -8,7 +8,7 @@
   }
 
   .main-title {
-    @apply font-bold text-xl my-10;
+    @apply font-bold text-3xl my-10;
   }
 
   .label-form {
