@@ -1,38 +1,42 @@
-<div>
-  <%= form_with(model: @user) do |form| %>
-    <% if @user.errors.any? %>
-    <div class="error_explanation">
-      <h2>
-        <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
-      </h2>
+<section class="flex flex-col m-20 px-10 border border-gray-200 items-center justify-center rounded-lg">
+  <h1 class="main-title"><%= title %></h1>
 
-      <ul>
-        <% @user.errors.each do |error| %>
-          <li>
-            <%= error.full_message %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+  <div class="max-w-lg w-full mb-10">
+    <%= form_with(model: @user, class: "flex flex-col w-full") do |form| %>
+      <% if @user.errors.any? %>
+      <div class="error_explanation">
+        <h2>
+          <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
+        </h2>
+
+        <ul>
+          <% @user.errors.each do |error| %>
+            <li>
+              <%= error.full_message %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <div>
+        <%= form.label :email, class: "label-form" %>
+        <%= form.email_field :email, class: "field-form" %>
+      </div>
+
+      <div>
+        <%= form.label :password, class: "label-form" %>
+        <%= form.password_field :password, class: "field-form" %>
+      </div>
+
+      <div>
+        <%= form.label :password_confirmation, class: "label-form" %>
+        <%= form.password_field :password_confirmation, class: "field-form" %>
+      </div>
+
+      <div class="mt-10 flex justify-center items-center">
+        <%= form.submit button_text, class: "btn-primary bg-green-700" %>
+      </div>
     <% end %>
-
-    <div>
-      <%= form.label :email %>
-      <%= form.email_field :email %>
-    </div>
-
-    <div>
-      <%= form.label :password %>
-      <%= form.password_field :password %>
-    </div>
-
-    <div>
-      <%= form.label :password_confirmation %>
-      <%= form.password_field :password_confirmation %>
-    </div>
-
-    <div>
-      <%= form.submit button_text %>
-    </div>
-  <% end %>
-</div>
+  </div>
+</section>
