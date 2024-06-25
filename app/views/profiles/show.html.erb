@@ -1,7 +1,16 @@
-<%= render @profile %>
+<section>
+  <%= render @profile %>
+</section>
 
-<% if current_user == @profile.user %>
-  <div>
-    <%= link_to "Edit this profile", edit_profile_path(@profile) %>
-  </div>
-<% end %>
+<section>
+  <% @profile.user.articles.each do |article| %>
+    <div class="m-10 p-5 border border-gray-400 rounded-lg">
+      <span class="font-bold text-lg">
+        <%= article.name %> <br>
+      </span>
+      <span class="font-semibold text-sm">
+        <%= article.description %>
+      </span>
+    </div>
+  <% end %>
+</section>

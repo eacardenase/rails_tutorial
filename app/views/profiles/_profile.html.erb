@@ -1,32 +1,32 @@
-<div id="<%= dom_id profile %>">
-  <p>
-    <strong>Name:</strong>
+<div id="<%= dom_id profile %>" class="flex flex-col border border-gray-300 rounded-lg p-10 items-center gap-3 m-10">
+  <span class="font-bold text-xl">
     <%= profile.name %>
-  </p>
+  </span>
 
-  <p>
+  <span>
+    <%= profile.city %>,
+    <%= profile.country %>
+  </span>
+
+  <span>
     <strong>Birth:</strong>
     <%= profile.birth %>
-  </p>
+  </span>
 
-  <p>
-    <strong>City:</strong>
-    <%= profile.city %>
-  </p>
-
-  <p>
-    <strong>Country:</strong>
-    <%= profile.country %>
-  </p>
-
-  <p>
+  <span>
     <strong>Gender:</strong>
     <%= profile.gender %>
-  </p>
+  </span>
 
-  <p>
+  <span>
     <strong>Role:</strong>
     <%= profile.role %>
-  </p>
+  </span>
+
+  <% if current_user == profile.user %>
+    <div>
+      <%= link_to "Edit profile", edit_profile_path(profile), class: "btn-primary bg-green-700" %>
+    </div>
+  <% end %>
 
 </div>
