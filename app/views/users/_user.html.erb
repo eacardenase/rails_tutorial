@@ -1,5 +1,5 @@
 <div>
-  <%= user.email %>
-  <br>
-  <%= link_to "See user", user_path(user) %>
+  <%= profile.name %> <br>
+  <%= profile.user.email %> <br>
+  <%= link_to "See user", profile_path(profile) %>
 </div>
