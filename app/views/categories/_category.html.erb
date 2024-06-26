@@ -1,7 +1,10 @@
-<div id="<%= dom_id category %>">
-  <p>
-    <strong>Name:</strong>
+<div id="<%= dom_id category %>" class="my-10 p-10 border border-yellow-500 flex flex-col rounded-lg">
+  <span class="font-bold text-lg">
     <%= category.name %>
-  </p>
+  </span>
 
+  <div class="my-3 flex gap-10">
+    <%= link_to "Edit category", edit_category_path(category), class: "btn-primary bg-yellow-500" %>
+    <%= button_to "Delete category", category_path(category), class: "btn-primary bg-red-600", method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
+  </div>
 </div>
