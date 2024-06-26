@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ new create confirm_email ]
-  before_action :set_user, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :same_user?, only: %i[ edit update destroy ]
 
   def index
     @users = User.all
@@ -58,5 +59,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def same_user?
+    redirect_to users_path unless current_user == @user
   end
 end

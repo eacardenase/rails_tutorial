@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   skip_before_action :user_has_profile?, only: %i[ new create ]
   before_action :set_profile, only: %i[ show edit update destroy ]
+  before_action :same_profile?, only: %i[ edit update destroy ]
 
   # GET /profiles or /profiles.json
   def index
@@ -67,5 +68,9 @@ class ProfilesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def profile_params
       params.require(:profile).permit(:name, :birth, :city, :country, :gender, :role)
+    end
+
+    def same_profile?
+      redirect_to users_path unless current_user.profile == @profile
     end
 end
