@@ -1,55 +1,61 @@
-<div>
-  <%= form_with(model: article) do |form| %>
-    <% if article.errors.any? %>
-      <div id="error_explanation">
-        <h2>
-          <%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:
-        </h2>
-        
-        <ul>
-          <% article.errors.each do |error| %>
-            <li>
-              <%= error.full_message %>
-            </li>
-          <% end %>
-        </ul>
+<section class="flex flex-col m-20 px-10 border border-gray-200 items-center justify-center rounded-lg">
+  <h1 class="main-title"><%= title %></h1>
+
+  <div class="w-full max-w-5xl mb-10">
+    <%= form_with(model: article, class: "flex flex-col w-full") do |form| %>
+      <% if article.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:
+          </h2>
+          
+          <ul>
+            <% article.errors.each do |error| %>
+              <li>
+                <%= error.full_message %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div>
+        <%= form.label :name, "Insert name: ", class: "label-form" %>
+        <%= form.text_field :name, class: "field-form" %>
+      </div>
+
+      <div>
+        <%= form.label :description, 'Insert description: ', class: "label-form" %>
+        <%= form.text_field :description, class: "field-form" %>
+      </div>
+
+      <div class="my-2">
+        <%= form.label :avatar, "Insert main image: ", class: "label-form" %>
+        <%= form.file_field :avatar %>
+      </div>
+
+      <div class="my-2">
+        <%= form.label :body, "Insert the article's body: ", class: "label-form" %>
+        <%= form.rich_text_area :body %>
+      </div>
+
+      <span class="font-bold text-sm">Categories</span>
+      <div class="flex flex-wrap gap-4">
+        <%= collection_check_boxes(:categories, :ids, Category.all, :id, :name) do |box| %>
+          <div class="flex items-center gap-1">
+            <% if article.categories.include?(Category.find(box.object.id)) %>
+              <%= box.check_box checked: true %>
+            <% else %>
+                <%= box.check_box %>
+            <% end %>
+            <%= box.object.name %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="mt-5 flex items-center justify-center">
+        <%= form.submit class: "btn-primary bg-green-600" %>
       </div>
     <% end %>
-
-    <div>
-      <%= form.label :name, "Insert name: " %>
-      <%= form.text_field :name%>
-    </div>
-
-    <div>
-      <%= form.label :description, 'Insert description: ' %>
-      <%= form.text_field :description %>
-    </div>
-
-    <div>
-      <%= form.label :avatar, "Insert main image: " %>
-      <%= form.file_field :avatar %>
-    </div>
-
-    <div>
-      <%= form.label :body, "Insert the article's body: " %>
-      <%= form.rich_text_area :body %>
-    </div>
-
-    <div>
-      <%= collection_check_boxes(:categories, :ids, Category.all, :id, :name) do |box| %>
-        <% if article.categories.include?(Category.find(box.object.id)) %>
-          <%= box.check_box checked: true %>
-        <% else %>
-          <%= box.check_box %>
-        <% end %>
-        
-        <%= box.object.name %>
-      <% end %>
-    </div>
-
-    <div>
-      <%= form.submit %>
-    </div>
-  <% end %>
-</div>
+  </div>
+</section>
