@@ -61,6 +61,6 @@ class ArticlesController < ApplicationController
   end
 
   def same_user?
-    redirect_to articles_path unless current_user == @article.user
+    redirect_to articles_path unless current_user == @article.user || current_user.profile.superadmin?
   end
 end

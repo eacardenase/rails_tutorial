@@ -62,6 +62,6 @@ class UsersController < ApplicationController
   end
 
   def same_user?
-    redirect_to users_path unless current_user == @user
+    redirect_to users_path unless current_user == @user || current_user.profile.superadmin?
   end
 end

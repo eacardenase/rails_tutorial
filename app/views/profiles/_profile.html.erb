@@ -26,6 +26,13 @@
   <% if current_user == profile.user %>
     <div>
       <%= link_to "Edit profile", edit_profile_path(profile), class: "btn-primary bg-green-700" %>
+      <%= link_to "Edit account", user_edit_path(profile.user), class: "btn-primary bg-blue-700" %>
+    </div>
+  <% end %>
+
+  <% if current_user == profile.user || current_user.profile.superadmin? %>
+    <div>
+      <%= button_to "Cancel account", user_destroy_path(profile.user), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-primary bg-red-500" %>
     </div>
   <% end %>
 
