@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :user_is_member?, only: %i[ new create edit update destroy ]
   before_action :set_article, only: %i[show edit update destroy]
+  before_action :same_user?, only: %i[ edit update destroy ]
 
   def index
     @articles = Article.all
@@ -57,5 +58,9 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def same_user?
+    redirect_to articles_path unless current_user == @article.user
   end
 end

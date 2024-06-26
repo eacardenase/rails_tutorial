@@ -22,10 +22,12 @@
   </div>
 
   <% unless current_user.profile.member? %>
-    <div class="flex mt-10 gap-10">
-      <%= link_to "Edit article", article_edit_path(@article), class: "btn-primary bg-green-600" %>
-      <%= button_to "Delete article", article_destroy_path(@article), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-primary bg-red-500" %>
-    </div>
+    <% if current_user == @article.user %>
+      <div class="flex mt-10 gap-10">
+        <%= link_to "Edit article", article_edit_path(@article), class: "btn-primary bg-green-600" %>
+        <%= button_to "Delete article", article_destroy_path(@article), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-primary bg-red-500" %>
+      </div>
+    <% end %>
   <% end %>
 
   <div class="w-full">
