@@ -85,7 +85,7 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     user_name: "apikey",
-    password: Rails.application.credentials.sendgrid_secret_key,
+    password: ENV["SENDGRID_API_KEY"],
     domain: "https://ror-tutorial-0161c7193d28.herokuapp.com",
     address: "smtp.sengrid.net",
     port: 587,
