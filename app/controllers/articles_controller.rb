@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :user_is_member?, only: %i[ new create edit update destroy ]
   before_action :set_article, only: %i[show edit update destroy]
 
   def index

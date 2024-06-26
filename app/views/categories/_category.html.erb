@@ -3,8 +3,10 @@
     <%= category.name %>
   </span>
 
-  <div class="my-3 flex gap-10">
-    <%= link_to "Edit category", edit_category_path(category), class: "btn-primary bg-yellow-500" %>
-    <%= button_to "Delete category", category_path(category), class: "btn-primary bg-red-600", method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
-  </div>
+  <% unless current_user.profile.member? %>
+    <div class="my-3 flex gap-10">
+      <%= link_to "Edit category", edit_category_path(category), class: "btn-primary bg-yellow-500" %>
+      <%= button_to "Delete category", category_path(category), class: "btn-primary bg-red-600", method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
+    </div>
+  <% end %>
 </div>

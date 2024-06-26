@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
   def user_has_profile?
     redirect_to new_profile_path, notice: "Tell us more about you" if current_user && current_user.profile.nil?
   end
+
+  def user_is_member?
+    redirect_to root_path, notice: "You shall not pass!" if current_user && current_user.profile.member?
+  end
 end
