@@ -8,11 +8,13 @@
     </span>
   </div>
 
-  <div>
-    <%= button_to "Delete comment", comment_path(comment), 
-      class: "btn-primary bg-red-500",
-      method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } 
-    %>
-  </div>
+  <% if current_user == comment.user %>
+    <div>
+      <%= button_to "Delete comment", comment_path(comment), 
+        class: "btn-primary bg-red-500",
+        method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } 
+      %>
+    </div>
+  <% end %>
 
 </div>
