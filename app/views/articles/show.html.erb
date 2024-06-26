@@ -1,39 +1,33 @@
-<h1>Show Article</h1>
-
-<div>
-  <h3>
-    <%= @article.name %>
-  </h3>
-
-  <div>
-    <% @article.categories.each do |category| %>
-      <span>
-        <%= category.name %>
-      </span> <br>
-    <% end %>
-  </div>
+<section class="m-10 p-10 flex flex-col items-center">
+  <h1 class="main-title mb-1"><%= @article.name %></h1>
 
   <div>
     <%= @article.description %>
   </div>
 
-  <div>
-    <%= image_tag(@article.avatar, width: "750") %>
+  <div class="flex gap-5 mx-2 items-center justify-center">
+    <% @article.categories.each do |category| %>
+      <span class="bg-blue-100 text-blue-700 text-sm font-semibold rounded-lg px-4 py-1">
+        <%= category.name %>
+      </span> <br>
+    <% end %>
   </div>
 
-  <div>
+  <div class="w-96 overflow-hidden my-10 rounded-xl">
+    <%= image_tag @article.avatar, class: "object-cover" %>
+  </div>
+
+  <div class="flex flex-col items-center justify-center w-full max-w-5xl">
     <%= @article.body %>
   </div>
 
-  <div>
-    <%= link_to "Edit article", article_edit_path(@article) %>
-    <%= button_to "Delete article", article_destroy_path(@article), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
+  <div class="flex mt-10 gap-10">
+    <%= link_to "Edit article", article_edit_path(@article), class: "btn-primary bg-green-500" %>
+    <%= button_to "Delete article", article_destroy_path(@article), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-primary bg-red-500" %>
   </div>
 
-  <hr>
-
   <div>
-    <h4>Comments</h4>
+    <h4 class="font-bold text-lg mt-10">Comments</h4>
 
     <% @article.comments.each do |comment| %>
       <%= render "comments/comment", comment: comment %>
@@ -41,7 +35,7 @@
   </div>
 
   <div>
-    <h5>Add comment</h5>
+    <h5 class="font-semibold mt-10">Add comment</h5>
     <%= render "comments/form", article: @article, comment: @comment %>
   </div>
 </div>
