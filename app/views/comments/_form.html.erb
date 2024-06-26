@@ -1,14 +1,13 @@
-<%= form_with(model: comment) do |form| %>
+<%= form_with(model: comment, class: "flex flex-col mt-2") do |form| %>
   <div>
     <%= form.hidden_field :article_id, value: article.id %>
   </div>
 
   <div>
-    <%= form.label :text, style: "display: block" %>
-    <%= form.text_field :text %>
+    <%= form.text_field :text, class: "field-form" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn-primary bg-green-600" %>
   </div>
 <% end %>

@@ -1,12 +1,18 @@
-<div id="<%= dom_id comment %>">
-  <p>
-    <strong>Text:</strong>
-    <%= comment.text %> <br>
-    <%= comment.user.email %>
-  </p>
+<div id="<%= dom_id comment %>" class="border border-gray-200 flex p-3 my-2 justify-between items-center rounded-lg">
+  <div class="flex flex-col">
+    <span class="font-semibold text-sm">
+      <%= comment.text %>
+    </span>
+    <span class="font-semibold text-xs text-slate-600">
+      <%= comment.user.email %>
+    </span>
+  </div>
 
   <div>
-    <%= button_to "Delete comment", comment_path(comment), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
+    <%= button_to "Delete comment", comment_path(comment), 
+      class: "btn-primary bg-red-500",
+      method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } 
+    %>
   </div>
 
 </div>

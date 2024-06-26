@@ -1,4 +1,4 @@
-<section class="m-10 p-10 flex flex-col items-center">
+<section class="m-10 p-10 flex flex-col items-center max-w-5xl mx-auto">
   <h1 class="main-title mb-1"><%= @article.name %></h1>
 
   <div>
@@ -17,25 +17,27 @@
     <%= image_tag @article.avatar, class: "object-cover" %>
   </div>
 
-  <div class="flex flex-col items-center justify-center w-full max-w-5xl">
+  <div class="flex flex-col items-center justify-center w-full">
     <%= @article.body %>
   </div>
 
   <div class="flex mt-10 gap-10">
-    <%= link_to "Edit article", article_edit_path(@article), class: "btn-primary bg-green-500" %>
+    <%= link_to "Edit article", article_edit_path(@article), class: "btn-primary bg-green-600" %>
     <%= button_to "Delete article", article_destroy_path(@article), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-primary bg-red-500" %>
   </div>
 
-  <div>
+  <div class="w-full">
     <h4 class="font-bold text-lg mt-10">Comments</h4>
 
-    <% @article.comments.each do |comment| %>
-      <%= render "comments/comment", comment: comment %>
-    <% end %>
+    <div class="my-5">
+      <% @article.comments.each do |comment| %>
+        <%= render "comments/comment", comment: comment %>
+      <% end %>
+    </div>
   </div>
 
-  <div>
+  <div class="w-full">
     <h5 class="font-semibold mt-10">Add comment</h5>
     <%= render "comments/form", article: @article, comment: @comment %>
   </div>
-</div>
+</section>
