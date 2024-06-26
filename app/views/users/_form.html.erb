@@ -19,6 +19,8 @@
       </div>
       <% end %>
 
+      <%= form.hidden_field :url, id: "url_field" %>
+
       <div>
         <%= form.label :email, class: "label-form" %>
         <%= form.email_field :email, class: "field-form" %>
